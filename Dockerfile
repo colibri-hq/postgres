@@ -56,7 +56,7 @@ COPY --link --from=builder /build/sql /usr/share/postgresql/17/extension/
 COPY --link --from=builder /build/*.so /usr/lib/postgresql/17/lib/
 COPY --link --from=builder /build/*.control* /usr/share/postgresql/17/extension/
 COPY --link ./supabase_vault/supabase_vault.conf /etc/postgresql/supabase_vault.conf
-COPY --link --chown=postgres:postgres ./supabase_vault/pgsodium_get_key.sh /opt/pgsodium_get_key.sh
+COPY --link --chown=999:999 ./supabase_vault/pgsodium_get_key.sh /opt/pgsodium_get_key.sh
 # endregion
 
 STOPSIGNAL SIGINT
