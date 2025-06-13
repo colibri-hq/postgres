@@ -45,7 +45,8 @@ RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
   ;
 EOF
 
-COPY --link ./init.sql /docker-entrypoint-initdb.d/00_init.sql
+COPY --link ./init.sh /docker-entrypoint-initdb.d/00__init__.sh
+COPY --link ./init.sql /docker-entrypoint-initdb.d/00__init__.sql
 
 # region Cron Extension
 COPY --link ./pg_cron/pg_cron.conf /etc/postgresql/pg_cron.conf
