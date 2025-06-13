@@ -9,6 +9,7 @@ image includes the following extensions:
 - **[`supabase_vault`](https://github.com/supabase/vault):** To manage secrets and sensitive data.
 - **[`pg_cron`](https://github.com/citusdata/pg_cron):** For scheduling periodic tasks within the database.
 - **[`pgvector`](https://github.com/pgvector/pgvector):** For vector similarity search.
+- **[`isn`](https://www.postgresql.org/docs/current/isn.html):** For International Standard Number (ISN) support.
 
 Configuration
 -------------
