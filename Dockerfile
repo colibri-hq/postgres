@@ -13,7 +13,7 @@ RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
   set -eux
   apt-get update
   apt-get install --yes --no-install-recommends \
-    "postgresql-server-dev-${POSTGRES_VERSION}" \
+    "postgresql-server-dev-${PG_MAJOR}" \
     ca-certificates \
     build-essential \
     libsodium-dev \
@@ -40,8 +40,8 @@ RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
   set -eux
   apt-get update
   apt-get install --yes --no-install-recommends \
-    "postgresql-${POSTGRES_VERSION}-cron" \
-    "postgresql-${POSTGRES_VERSION}-pgvector" \
+    "postgresql-${PG_MAJOR}-cron" \
+    "postgresql-${PG_MAJOR}-pgvector" \
     libsodium23 \
   ;
 EOF
@@ -54,9 +54,9 @@ COPY --link ./pg_cron/pg_cron.conf /etc/postgresql/pg_cron.conf
 # endregion
 
 # region Supabase Vault Extension
-COPY --link --from=builder /build/sql /usr/share/postgresql/${POSTGRES_VERSION}/extension/
-COPY --link --from=builder /build/*.so /usr/lib/postgresql/${POSTGRES_VERSION}/lib/
-COPY --link --from=builder /build/*.control* /usr/share/postgresql/${POSTGRES_VERSION}/extension/
+COPY --link --from=builder /build/sql /usr/share/postgresql/${PG_MAJOR}/extension/
+COPY --link --from=builder /build/*.so /usr/lib/postgresql/${PG_MAJOR}/lib/
+COPY --link --from=builder /build/*.control* /usr/share/postgresql/${PG_MAJOR}/extension/
 COPY --link ./supabase_vault/supabase_vault.conf /etc/postgresql/supabase_vault.conf
 COPY --link --chown=999:999 ./supabase_vault/pgsodium_get_key.sh /opt/pgsodium_get_key.sh
 # endregion
