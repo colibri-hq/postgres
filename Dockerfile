@@ -1,5 +1,6 @@
 # syntax=docker/dockerfile:1
-FROM postgres:17 AS base
+ARG POSTGRES_VERSION=17
+FROM postgres:${POSTGRES_VERSION} AS base
 FROM base AS builder
 ARG VAULT_VERSION=0.3.1
 ENV VAULT_VERSION=${VAULT_VERSION}
